@@ -15,7 +15,7 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "first-app",
-    title: "First App",
+    title: "第一个应用",
   },
   {
     path: "primitives",
@@ -27,7 +27,7 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "constants",
-    title: "Constants",
+    title: "常量",
   },
   {
     path: "immutable",
@@ -48,11 +48,11 @@ const SOL_ROUTES: Route[] = [
   // Flow control
   {
     path: "if-else",
-    title: "If / Else",
+    title: "If / Else 分支",
   },
   {
     path: "loop",
-    title: "For and While Loop",
+    title: "For and While 循环",
   },
   // collection data types
   {
@@ -61,16 +61,16 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "array",
-    title: "Array",
+    title: "数组",
   },
   // custom data types
   {
     path: "enum",
-    title: "Enum",
+    title: "枚举",
   },
   {
     path: "structs",
-    title: "Structs",
+    title: "结构体",
   },
   {
     path: "data-locations",
@@ -79,7 +79,7 @@ const SOL_ROUTES: Route[] = [
   // function
   {
     path: "function",
-    title: "Function",
+    title: "函数",
   },
   {
     path: "view-and-pure-functions",
@@ -87,7 +87,7 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "error",
-    title: "Error",
+    title: "错误",
   },
   {
     path: "function-modifier",
@@ -95,12 +95,12 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "events",
-    title: "Events",
+    title: "事件",
   },
   // inheritance
   {
     path: "constructor",
-    title: "Constructor",
+    title: "构造函数",
   },
   {
     path: "inheritance",
@@ -120,7 +120,7 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "interface",
-    title: "Interface",
+    title: "接口",
   },
   // send / receive ether
   {
@@ -184,11 +184,11 @@ const SOL_ROUTES: Route[] = [
 const APP_ROUTES: Route[] = [
   {
     path: "multi-sig-wallet",
-    title: "Multi Sig Wallet",
+    title: "多签钱包",
   },
   {
     path: "merkle-tree",
-    title: "Merkle Tree",
+    title: "梅克尔根",
   },
   {
     path: "iterable-mapping",
@@ -227,7 +227,7 @@ const APP_ROUTES: Route[] = [
 const HACK_ROUTES: Route[] = [
   {
     path: "re-entrancy",
-    title: "Re-Entrancy",
+    title: "重入攻击",
   },
   {
     path: "overflow",
@@ -304,14 +304,14 @@ export const ROUTES_BY_CATEGORY = [
     routes: SOL_ROUTES,
   },
   {
-    title: "Applications",
+    title: "应用程序",
     routes: APP_ROUTES.map((route) => ({
       ...route,
       path: `/app/${route.path}`,
     })),
   },
   {
-    title: "Hacks",
+    title: "黑客事件",
     routes: HACK_ROUTES.map((route) => ({
       ...route,
       path: `/hacks/${route.path}`,
@@ -336,20 +336,19 @@ function HomePage() {
   return (
     <div className={styles.component}>
       <SEO
-        title="Solidity by Example | 0.8.3"
-        description="Learn smart contract programming using Solidity"
+        title="Solidity by Example 中文版 | 0.8.3"
+        description="使用 Solidity 学习编写智能合约"
       />
       <h1 className={styles.header}>
-        <a href="/">Solidity by Example</a>
+        <a href="/solidity-by-example-cn/">Solidity by Example 中文版</a>
       </h1>
       <div className={styles.subHeader}>v 0.8.3</div>
       <div className={styles.main}>
         <p>
-          an introduction to <a href="https://solidity.readthedocs.io">Solidity</a> with
-          simple examples
+          用简单的例子介绍 <a href="https://solidity.readthedocs.io">Solidity</a>
         </p>
 
-        <div className={styles.youTube}>
+{/*        <div className={styles.youTube}>
           <img src={youTube} alt="logo" className={styles.youTubeLogo} />
           <a
             href="https://www.youtube.com/channel/UCJWh7F3AFyQ_x01VKzr9eyA"
@@ -363,7 +362,7 @@ function HomePage() {
           {UPDATES.map((text, i) => (
             <div key={i}>{text}</div>
           ))}
-        </div>
+        </div>*/}
 
         {ROUTES_BY_CATEGORY.map(({ routes, title }, i) => (
           <div key={i}>

@@ -1,8 +1,8 @@
-# solidity-by-example.github.io
+# Solidity By Example 中文版
 
-[Solidity By Example](https://solidity-by-example.org)
+[Solidity By Example](http://mhxw.life/solidity-by-example-cn/) 是一个通过带注释的示例程序学习 Solidity 语言的网站
 
-### License
+### 许可协议
 
 [MIT License](LICENSE)
 

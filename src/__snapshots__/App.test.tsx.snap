@@ -2,7 +2,7 @@
 
 exports[`it renders 1`] = `
 <BrowserRouter
-  basename=""
+  basename="/solidity-by-example-cn"
 >
   <div
     className="component"

@@ -1,10 +1,10 @@
 ---
-title: First Application
+title: 第一个应用程序
 version: 0.8.3
-description: Example of smart contract in Solidity
+description: Solidity中的智能合约案例
 ---
 
-Here is a simple contract that you can get, increment and decrement the count store in this contract.
+这是一个简单的合约, increment and decrement the count store in this contract.
 
 ```solidity
 {{{Counter}}}

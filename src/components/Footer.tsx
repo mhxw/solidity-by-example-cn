@@ -11,7 +11,7 @@ const ADDRESS = "0x95a647B3d8a3F11176BAdB799b9499C671fa243a"
 function Footer() {
   return (
     <div className={styles.component}>
-      <div className={styles.row}>
+{/*      <div className={styles.row}>
         <img src={sce} alt="smart contract engineer" className={styles.sce} />
         <a href="https://www.smartcontract.engineer" target="__blank">
           Smart Contract Engineer
@@ -61,17 +61,17 @@ function Footer() {
         <a href="mailto:contact@solidity-by-example.org">
           contact@solidity-by-example.org
         </a>
-      </div>
+      </div>*/}
       <div className={styles.row}>
         <a
-          href="https://github.com/solidity-by-example/solidity-by-example.github.io"
+          href="https://github.com/mhxw/solidity-by-example-cn"
           target="__blank"
         >
           source
         </a>
         <div className={styles.bar}>|</div>
         <a
-          href="https://github.com/solidity-by-example/solidity-by-example.github.io/blob/gh-pages/LICENSE"
+          href="https://github.com/mhxw/solidity-by-example-cn/blob/gh-pages/LICENSE"
           target="__blank"
         >
           license

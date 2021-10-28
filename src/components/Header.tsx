@@ -11,7 +11,7 @@ function Header() {
       </a>
 
       <h3 className={styles.header}>
-        <a href="/">Solidity by Example</a>
+        <a href="/solidity-by-example-cn/">Solidity by Example 中文版</a>
 
         <div className={styles.versions}>
           <div className={styles.version}>version 0.8.3</div>

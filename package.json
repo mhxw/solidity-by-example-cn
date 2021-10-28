@@ -1,8 +1,8 @@
 {
-  "name": "solidity-by-example",
+  "name": "solidity-by-example-cn",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://solidity-by-example.org",
+  "homepage": "/solidity-by-example-cn/",
   "dependencies": {
     "highlight.js": "^11.0.1",
     "prop-types": "^15.7.2",
