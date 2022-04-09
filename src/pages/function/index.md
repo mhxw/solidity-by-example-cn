@@ -1,5 +1,5 @@
 ---
-title: Function
+title: Function 函数
 version: 0.8.10
 description: Example of how to write functions in Solidity
 ---

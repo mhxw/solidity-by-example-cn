@@ -1,5 +1,5 @@
 ---
-title: Function Selector
+title: Function Selector 函数选择器
 version: 0.8.10
 description: Example of how function selectors are computed
 ---

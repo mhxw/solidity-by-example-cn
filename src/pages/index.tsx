@@ -1,7 +1,6 @@
 import React from "react"
 import SEO from "../components/SEO"
 import styles from "./index.module.css"
-import youTube from "../components/youtube.png"
 
 interface Route {
   path: string
@@ -19,23 +18,23 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "primitives",
-    title: "Primitive Data Types",
+    title: "Primitive Data Types 数据类型",
   },
   {
     path: "variables",
-    title: "Variables",
+    title: "Variables 变量",
   },
   {
     path: "constants",
-    title: "Constants",
+    title: "Constants 常量",
   },
   {
     path: "immutable",
-    title: "Immutable",
+    title: "Immutable 不可变量",
   },
   {
     path: "state-variables",
-    title: "Reading and Writing to a State Variable",
+    title: "读写状态变量",
   },
   {
     path: "ether-units",
@@ -48,144 +47,144 @@ const SOL_ROUTES: Route[] = [
   // Flow control
   {
     path: "if-else",
-    title: "If / Else",
+    title: "If / Else 分支",
   },
   {
     path: "loop",
-    title: "For and While Loop",
+    title: "For 和 While 循环",
   },
   // collection data types
   {
     path: "mapping",
-    title: "Mapping",
+    title: "Mapping 映射",
   },
   {
     path: "array",
-    title: "Array",
+    title: "Array 数组",
   },
   // custom data types
   {
     path: "enum",
-    title: "Enum",
+    title: "Enum 枚举",
   },
   {
     path: "structs",
-    title: "Structs",
+    title: "Structs 结构体",
   },
   {
     path: "data-locations",
-    title: "Data Locations - Storage, Memory and Calldata",
+    title: "Data Locations 数据位置- Storage, Memory and Calldata",
   },
   // function
   {
     path: "function",
-    title: "Function",
+    title: "Function 函数简介",
   },
   {
     path: "view-and-pure-functions",
-    title: "View and Pure Functions",
+    title: "只读函数：View 和 Pure",
   },
   {
     path: "error",
-    title: "Error",
+    title: "Error 报错控制",
   },
   {
     path: "function-modifier",
-    title: "Function Modifier",
+    title: "Function Modifier 函数修改器",
   },
   {
     path: "events",
-    title: "Events",
+    title: "Events 事件",
   },
   // inheritance
   {
     path: "constructor",
-    title: "Constructor",
+    title: "Constructor 构造函数",
   },
   {
     path: "inheritance",
-    title: "Inheritance",
+    title: "Inheritance 继承",
   },
   {
     path: "shadowing-inherited-state-variables",
-    title: "Shadowing Inherited State Variables",
+    title: "Shadowing Inherited State Variables 覆盖父级状态变量",
   },
   {
     path: "super",
-    title: "Calling Parent Contracts",
+    title: "调用父级合约",
   },
   {
     path: "visibility",
-    title: "Visibility",
+    title: "Visibility 可见性",
   },
   {
     path: "interface",
-    title: "Interface",
+    title: "Interface 接口合约",
   },
   // send / receive ether
   {
     path: "payable",
-    title: "Payable",
+    title: "Payable 支付ETH",
   },
   {
     path: "sending-ether",
-    title: "Sending Ether - Transfer, Send, and Call",
+    title: "发送以太 - Transfer, Send, and Call",
   },
   {
     path: "fallback",
-    title: "Fallback",
+    title: "Fallback 回退函数",
   },
   // contract interaction
   {
     path: "call",
-    title: "Call",
+    title: "Call 低级Call",
   },
   {
     path: "delegatecall",
-    title: "Delegatecall",
+    title: "Delegatecall 委托调用",
   },
   {
     path: "function-selector",
-    title: "Function Selector",
+    title: "Function Selector 函数选择器",
   },
 
   {
     path: "calling-contract",
-    title: "Calling Other Contract",
+    title: "调用其他合约",
   },
   {
     path: "new-contract",
-    title: "Creating Contracts from a Contract",
+    title: "从合约中创建其他合约",
   },
   // misc
   {
     path: "try-catch",
-    title: "Try / Catch",
+    title: "Try / Catch 用法",
   },
   {
     path: "import",
-    title: "Import",
+    title: "Import 引入",
   },
   {
     path: "library",
-    title: "Library",
+    title: "Library 库合约",
   },
   {
     path: "abi-decode",
-    title: "ABI Decode",
+    title: "ABI Decode ABI 解码",
   },
   // crypto
   {
     path: "hashing",
-    title: "Hashing with Keccak256",
+    title: "Hashing with Keccak256 哈希运算",
   },
   {
     path: "signature",
-    title: "Verifying Signature",
+    title: "Verifying Signature 验证签名",
   },
   {
     path: "gas-golf",
-    title: "Gas Optimizations",
+    title: "Gas 优化",
   },
 ]
 
@@ -196,11 +195,11 @@ const APP_ROUTES: Route[] = [
   },
   {
     path: "multi-sig-wallet",
-    title: "Multi Sig Wallet",
+    title: "Multi Sig Wallet 多签钱包",
   },
   {
     path: "merkle-tree",
-    title: "Merkle Tree",
+    title: "Merkle Tree 梅克尔树",
   },
   {
     path: "iterable-mapping",
@@ -208,15 +207,15 @@ const APP_ROUTES: Route[] = [
   },
   {
     path: "erc20",
-    title: "ERC20",
+    title: "ERC20合约",
   },
   {
     path: "erc721",
-    title: "ERC721",
+    title: "ERC721合约",
   },
   {
     path: "create2",
-    title: "Precompute Contract Address with Create2",
+    title: "使用Create2计算合约地址",
   },
   {
     path: "minimal-proxy",
@@ -224,70 +223,70 @@ const APP_ROUTES: Route[] = [
   },
   {
     path: "upgradeable-proxy",
-    title: "Upgradeable Proxy",
+    title: "Upgradeable Proxy 升级代理",
   },
   {
     path: "deploy-any-contract",
-    title: "Deploy Any Contract",
+    title: "Deploy Any Contract 部署任意合约",
   },
   {
     path: "write-to-any-slot",
-    title: "Write to Any Slot",
+    title: "Write to Any Slot 写入任意插槽",
   },
   {
     path: "uni-directional-payment-channel",
-    title: "Uni-directional Payment Channel",
+    title: "Uni-directional Payment Channel 单向支付通道",
   },
   {
     path: "bi-directional-payment-channel",
-    title: "Bi-directional Payment Channel",
+    title: "Bi-directional Payment Channel 双向支付通道",
   },
   {
     path: "english-auction",
-    title: "English Auction",
+    title: "English Auction 英式拍卖",
   },
   {
     path: "dutch-auction",
-    title: "Dutch Auction",
+    title: "Dutch Auction 荷兰式拍卖",
   },
   {
     path: "crowd-fund",
-    title: "Crowd Fund",
+    title: "Crowd Fund 众筹合约",
   },
   {
     path: "multi-call",
-    title: "Multi Call",
+    title: "Multi Call 多重调用",
   },
   {
     path: "multi-delegatecall",
-    title: "Multi Delegatecall",
+    title: "Multi Delegatecall 多重委托调用",
   },
 ]
 
 const HACK_ROUTES: Route[] = [
   {
     path: "re-entrancy",
-    title: "Re-Entrancy",
+    title: "Re-Entrancy 重入",
   },
   {
     path: "overflow",
-    title: "Arithmetic Overflow and Underflow",
+    title: "Arithmetic Overflow and Underflow 算术溢出",
   },
   {
     path: "self-destruct",
-    title: "Self Destruct",
+    title: "Self Destruct 自毁函数",
   },
   {
     path: "accessing-private-data",
-    title: "Accessing Private Data",
+    title: "Accessing Private Data 权限控制合约",
   },
   {
     path: "delegatecall",
-    title: "Delegatecall",
+    title: "Delegatecall 委托调用",
   },
   {
     path: "randomness",
-    title: "Source of Randomness",
+    title: "Source of Randomness 随机数",
   },
   {
     path: "denial-of-service",
@@ -303,7 +302,7 @@ const HACK_ROUTES: Route[] = [
   },
   {
     path: "honeypot",
-    title: "Honeypot",
+    title: "Honeypot 蜜罐",
   },
   {
     path: "front-running",
@@ -315,7 +314,7 @@ const HACK_ROUTES: Route[] = [
   },
   {
     path: "signature-replay",
-    title: "Signature Replay",
+    title: "Signature Replay 签名重放",
   },
   {
     path: "contract-size",
@@ -333,11 +332,11 @@ const TEST_ROUTES: Route[] = [
 const DEFI_ROUTES = [
   {
     path: "uniswap-v2",
-    title: "Uniswap V2 Swap",
+    title: "Uniswap V2 交换",
   },
   {
     path: "uniswap-v2-add-remove-liquidity",
-    title: "Uniswap V2 Add Remove Liquidity",
+    title: "Uniswap V2 添加和移除流动性",
   },
   {
     path: "uniswap-v2-optimal-one-sided-supply",
@@ -345,11 +344,11 @@ const DEFI_ROUTES = [
   },
   {
     path: "chainlink-price-oracle",
-    title: "Chainlink Price Oracle",
+    title: "Chainlink 价格预言机",
   },
   {
     path: "staking-rewards",
-    title: "Staking Rewards",
+    title: "Staking Rewards 质押生息",
   },
   {
     path: "constant-sum-amm",
@@ -366,35 +365,35 @@ export const ROUTES_BY_CATEGORY = [
     title: "",
     routes: SOL_ROUTES.map((route) => ({
       ...route,
-      path: `/${route.path}`,
+      path: `/solidity-by-example-cn/${route.path}`,
     })),
   },
   {
     title: "Applications",
     routes: APP_ROUTES.map((route) => ({
       ...route,
-      path: `/app/${route.path}`,
+      path: `/solidity-by-example-cn/app/${route.path}`,
     })),
   },
   {
     title: "Hacks",
     routes: HACK_ROUTES.map((route) => ({
       ...route,
-      path: `/hacks/${route.path}`,
+      path: `/solidity-by-example-cn/hacks/${route.path}`,
     })),
   },
   {
     title: "Tests",
     routes: TEST_ROUTES.map((route) => ({
       ...route,
-      path: `/tests/${route.path}`,
+      path: `/solidity-by-example-cn/tests/${route.path}`,
     })),
   },
   {
     title: "DeFi",
     routes: DEFI_ROUTES.map((route) => ({
       ...route,
-      path: `/defi/${route.path}`,
+      path: `/solidity-by-example-cn/defi/${route.path}`,
     })),
   },
 ]
@@ -423,44 +422,21 @@ export function getPrevNextPaths(path: string): {
   }
 }
 
-const UPDATES = [
-  "2022/04/09 - Gas golf",
-  "2022/03/18 - ABI decode",
-  "2022/03/14 - Github PR by WorldDogs",
-]
-
 export default function HomePage() {
   return (
     <div className={styles.component}>
       <SEO
-        title="Solidity by Example | 0.8.10"
-        description="Learn smart contract programming using Solidity"
+        title="Solidity by Example 中文版 | 0.8.10"
+        description="使用 Solidity 学习编写智能合约"
       />
       <h1 className={styles.header}>
-        <a href="/">Solidity by Example</a>
+        <a href="/solidity-by-example-cn/">Solidity by Example 中文版</a>
       </h1>
       <div className={styles.subHeader}>v 0.8.10</div>
       <div className={styles.main}>
         <p>
-          an introduction to <a href="https://solidity.readthedocs.io">Solidity</a> with
-          simple examples
+          用简单的例子介绍 <a href="https://solidity.readthedocs.io">Solidity</a>
         </p>
-
-        <div className={styles.youTube}>
-          <img src={youTube} alt="logo" className={styles.youTubeLogo} />
-          <a
-            href="https://www.youtube.com/channel/UCJWh7F3AFyQ_x01VKzr9eyA"
-            target="__blank"
-          >
-            Most code are explained here
-          </a>
-        </div>
-
-        <div className={styles.updates}>
-          {UPDATES.map((text, i) => (
-            <div key={i}>{text}</div>
-          ))}
-        </div>
 
         {ROUTES_BY_CATEGORY.map(({ routes, title }, i) => (
           <div key={i}>

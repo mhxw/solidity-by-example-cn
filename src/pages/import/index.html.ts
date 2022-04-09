@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Import"
+export const title = "Import 引入"
 export const description = "Learn how to import other Solidity files"
 
 const html = `<p>You can import local and external files in Solidity.</p>

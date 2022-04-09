@@ -1,5 +1,5 @@
 ---
-title: Array
+title: Array 数组
 version: 0.8.10
 description: Learn about arrays in Solidity
 ---

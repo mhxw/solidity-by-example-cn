@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "ABI Decode"
+export const title = "ABI Decode ABI解码"
 export const description = "ABI decode bytes"
 
 const html = `<p><code>abi.encode</code> encodes data into <code>bytes</code>.</p>

@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Function"
+export const title = "Function 函数"
 export const description = "Example of how to write functions in Solidity"
 
 const html = `<p>There are several ways to return outputs from a function.</p>

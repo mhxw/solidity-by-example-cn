@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Constructor"
+export const title = "Constructor 构造函数"
 export const description =
   "Learn how to initialize smart contracts in Solidity using a constructor"
 

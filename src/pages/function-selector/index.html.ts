@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Function Selector"
+export const title = "Function Selector 函数选择器"
 export const description = "Example of how function selectors are computed"
 
 const html = `<p>When a function is called, the first 4 bytes of <code>calldata</code> specifies which function to call.</p>

@@ -1,5 +1,5 @@
 ---
-title: Error
+title: Error 错误
 version: 0.8.10
 description: Example of how to throw errors in Solidity
 ---

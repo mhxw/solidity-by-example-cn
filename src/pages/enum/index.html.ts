@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Enum"
+export const title = "Enum 枚举"
 export const description = "Example of enums in Solidity"
 
 const html = `<p>Solidity supports enumerables and they are useful to model choice and keep track of state.</p>

@@ -1,5 +1,5 @@
 ---
-title: Interface
+title: Interface 接口
 version: 0.8.10
 description: An example of interface in Solidity
 ---

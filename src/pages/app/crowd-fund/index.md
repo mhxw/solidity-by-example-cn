@@ -1,5 +1,5 @@
 ---
-title: Crowd Fund
+title: Crowd Fund 众筹合约
 version: 0.8.10
 description: An example of crowd funding contract
 ---

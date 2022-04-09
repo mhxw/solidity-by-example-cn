@@ -1,5 +1,5 @@
 ---
-title: Constants
+title: 常量
 version: 0.8.10
 description: Constant variables
 ---

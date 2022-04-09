@@ -1,5 +1,5 @@
 ---
-title: Import
+title: Import 引入
 version: 0.8.10
 description: Learn how to import other Solidity files
 ---

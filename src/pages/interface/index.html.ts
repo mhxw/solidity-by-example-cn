@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Interface"
+export const title = "Interface 接口"
 export const description = "An example of interface in Solidity"
 
 const html = `<p>You can interact with other contracts by declaring an <code>Interface</code>.</p>

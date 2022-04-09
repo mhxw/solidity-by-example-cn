@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Constants"
+export const title = "常量"
 export const description = "Constant variables"
 
 const html = `<p>Constants are variables that cannot be modified.</p>

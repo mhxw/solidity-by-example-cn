@@ -1,5 +1,5 @@
 ---
-title: Enum
+title: Enum 枚举
 version: 0.8.10
 description: Example of enums in Solidity
 ---

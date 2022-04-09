@@ -1,10 +1,11 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Function Modifier"
+export const title = "Function Modifier 函数修改器"
 export const description = "Example of how to write function modifier in Solidity"
 
-const html = `<p>Modifiers are code that can be run before and / or after a function call.</p>
-<p>Modifiers can be used to:</p>
+const html = `<p>Modifiers are code that can be run before and / or after a function call.
+函数修改器(Modifiers)可以用来改变一个函数的行为，用于在函数执行前后检查某种条件。</p>
+<p>修改器可用于:</p>
 <ul>
 <li>Restrict access</li>
 <li>Validate inputs</li>

@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Variables"
+export const title = "Variables 可见性"
 export const description = "Local, state and global variables"
 
 const html = `<p>There are 3 types of variables in Solidity</p>
