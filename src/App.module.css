@@ -14,11 +14,11 @@
   /* background-color: red; */
 }
 
-/* @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
   .main {
     margin: 0;
   }
-} */
+}
 
 .footer {
   display: flex;
