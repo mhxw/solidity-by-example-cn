@@ -28,3 +28,5 @@ memo.js
 .eslintcache
 memo
 crytic-export
+.idea
+yarn.lock

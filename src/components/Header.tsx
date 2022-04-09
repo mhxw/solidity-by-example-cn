@@ -9,7 +9,7 @@ import modeDark from "./mode-dark.png"
 function Header() {
   const { state, setTheme } = useAppContext()
 
-  let logo = state.theme == "dark" ? logoDark : logoLight
+  let logo = state.theme === "dark" ? logoDark : logoLight
 
   function onClickTheme(theme: Theme) {
     setTheme(theme)
@@ -23,14 +23,14 @@ function Header() {
       </a>
 
       <h3 className={styles.header}>
-        <a href="/">Solidity by Example</a>
+        <a href="/solidity-by-example-cn/">Solidity by Example 中文版</a>
 
         <div className={styles.versions}>
           <div className={styles.version}>version 0.8.10</div>
         </div>
       </h3>
 
-      {state.theme == "dark" ? (
+      {state.theme === "dark" ? (
         <img
           src={modeLight}
           alt="light mode"

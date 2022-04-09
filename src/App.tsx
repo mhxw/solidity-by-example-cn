@@ -19,13 +19,14 @@ function App() {
   }
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename="/solidity-by-example-cn">
       <div className={styles.component}>
         <Header />
         <div className={styles.main}>
           <Routes>
             {routes.map((route) => {
-              const { prev, next } = getPrevNextPaths(route.path)
+              const bathPath = "/solidity-by-example-cn"
+              const { prev, next } = getPrevNextPaths(bathPath + route.path)
               return (
                 <Route
                   key={route.path}

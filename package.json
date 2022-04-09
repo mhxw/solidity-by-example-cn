@@ -1,22 +1,20 @@
 {
-  "name": "solidity-by-example",
+  "name": "solidity-by-example-cn",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://solidity-by-example.org",
+  "homepage": "/solidity-by-example-cn/",
   "dependencies": {
     "highlight.js": "^11.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "^5.0.0",
-    "typescript": "^4.3.2"
+    "react-scripts": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "npm run lint && npm run copy-index-to-404",
-    "copy-index-to-404": "cp build/index.html build/404.html",
+    "postbuild": "npm run lint && react-snap",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
@@ -47,6 +45,7 @@
     "mustache": "^4.2.0",
     "prettier": "^2.5.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "react-snap": "^1.23.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5",
     "yaml": "^1.10.2"

@@ -28,7 +28,7 @@ const Example: React.FC<Props> = ({
   return (
     <div className={styles.component}>
       <SEO
-        title={`${title} | Solidity by Example | ${version}`}
+        title={`${title} | Solidity by Example 中文版 | ${version}`}
         description={description}
       />
       <div className={styles.content}>
@@ -52,7 +52,7 @@ const Example: React.FC<Props> = ({
         </div>
 
         <p>
-          Try on{" "}
+          尝试使用{" "}
           <a href="https://remix.ethereum.org" target="__blank">
             Remix
           </a>
