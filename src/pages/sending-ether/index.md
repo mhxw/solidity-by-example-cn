@@ -1,25 +1,25 @@
 ---
-title: Sending Ether (transfer, send, call)
+title: 发送以太 (transfer, send, call)
 version: 0.8.10
 description: An example of sending Ether in Solidity
 ---
 
-### How to send Ether?
+### 如何发送以太？
 
-You can send Ether to other contracts by
+你可以向其他合约发送以太通过：
 
 - `transfer` (2300 gas, throws error)
 - `send` (2300 gas, returns bool)
 - `call` (forward all gas or set gas, returns bool)
 
-### How to receive Ether?
+### 如何接收以太？
 
-A contract receiving Ether must have at least one of the functions below
+接收 Ether 的合约必须至少具有以下函数之一
 
 - `receive() external payable`
 - `fallback() external payable`
 
-`receive()` is called if `msg.data` is empty, otherwise `fallback()` is called.
+如果 `msg.data` 为空调用 `receive()` 否则调用 `fallback()`。
 
 ### Which method should you use?
 

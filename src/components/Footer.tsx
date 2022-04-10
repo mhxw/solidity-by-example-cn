@@ -5,6 +5,11 @@ function Footer() {
   return (
     <div className={styles.component}>
       <div className={styles.row}>
+        <a href="https://mhxw.life/ethereum-development-with-go-book/" target="__blank">
+          用Go来做以太坊开发
+        </a>
+      </div>
+      <div className={styles.row}>
         <a href="https://github.com/mhxw/solidity-by-example-cn" target="__blank">
           源码
         </a>
@@ -13,7 +18,7 @@ function Footer() {
           href="https://github.com/mhxw/solidity-by-example-cn/blob/gh-pages/LICENSE"
           target="__blank"
         >
-          license
+          License
         </a>
       </div>
     </div>

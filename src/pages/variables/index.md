@@ -1,5 +1,5 @@
 ---
-title: Variables
+title: Variables 变量
 version: 0.8.10
 description: Local, state and global variables
 ---

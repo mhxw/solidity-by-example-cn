@@ -73,7 +73,7 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "data-locations",
-    title: "Data Locations 数据位置- Storage, Memory and Calldata",
+    title: "数据位置- Storage, Memory and Calldata",
   },
   // function
   {
@@ -107,7 +107,7 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "shadowing-inherited-state-variables",
-    title: "Shadowing Inherited State Variables 覆盖父级状态变量",
+    title: "覆盖父级状态变量",
   },
   {
     path: "super",
@@ -124,7 +124,7 @@ const SOL_ROUTES: Route[] = [
   // send / receive ether
   {
     path: "payable",
-    title: "Payable 支付ETH",
+    title: "Payable 支付以太",
   },
   {
     path: "sending-ether",
@@ -154,12 +154,12 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "new-contract",
-    title: "从合约中创建其他合约",
+    title: "工厂合约：用合约部署合约",
   },
   // misc
   {
     path: "try-catch",
-    title: "Try / Catch 用法",
+    title: "Try / Catch 语句",
   },
   {
     path: "import",
@@ -171,7 +171,7 @@ const SOL_ROUTES: Route[] = [
   },
   {
     path: "abi-decode",
-    title: "ABI Decode ABI 解码",
+    title: "ABI 解码",
   },
   // crypto
   {
@@ -191,7 +191,7 @@ const SOL_ROUTES: Route[] = [
 const APP_ROUTES: Route[] = [
   {
     path: "ether-wallet",
-    title: "Ether Wallet",
+    title: "以太钱包合约",
   },
   {
     path: "multi-sig-wallet",
@@ -203,7 +203,7 @@ const APP_ROUTES: Route[] = [
   },
   {
     path: "iterable-mapping",
-    title: "Iterable Mapping",
+    title: "Iterable Mapping 可迭代映射",
   },
   {
     path: "erc20",
@@ -278,7 +278,7 @@ const HACK_ROUTES: Route[] = [
   },
   {
     path: "accessing-private-data",
-    title: "Accessing Private Data 权限控制合约",
+    title: "Accessing Private Data 访问私有数据",
   },
   {
     path: "delegatecall",
@@ -426,7 +426,7 @@ export default function HomePage() {
   return (
     <div className={styles.component}>
       <SEO
-        title="Solidity by Example 中文版 | 0.8.10"
+        title="Solidity by Example 中文版"
         description="使用 Solidity 学习编写智能合约"
       />
       <h1 className={styles.header}>
@@ -435,7 +435,10 @@ export default function HomePage() {
       <div className={styles.subHeader}>v 0.8.10</div>
       <div className={styles.main}>
         <p>
-          用简单的例子介绍 <a href="https://solidity.readthedocs.io">Solidity</a>
+          用简单的例子介绍{" "}
+          <a href="https://docs.soliditylang.org/" target="__blank">
+            Solidity
+          </a>
         </p>
 
         {ROUTES_BY_CATEGORY.map(({ routes, title }, i) => (

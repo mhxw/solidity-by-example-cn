@@ -1,5 +1,5 @@
 ---
-title: Error 错误
+title: Error 报错控制
 version: 0.8.10
 description: Example of how to throw errors in Solidity
 ---

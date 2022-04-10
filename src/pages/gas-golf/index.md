@@ -4,7 +4,7 @@ version: 0.8.10
 description: Some gas saving techniques
 ---
 
-一些gas节省技巧。
+一些 gas 节省技巧。
 
 - Replacing `memory` with `calldata`
 - Loading state variable to memory
