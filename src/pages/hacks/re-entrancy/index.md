@@ -1,26 +1,46 @@
 ---
-title: Re-Entrancy
+title: Re-Entrancy 重入漏洞
 version: 0.8.10
 description: An example of re-entrancy attack in Solidity
 ---
 
-### Vulnerability
+### 前置知识
 
-Let's say that contract `A` calls contract `B`.
+重入漏洞相信大家都有所耳闻了，那么什么是重入漏洞呢？
 
-Reentracy exploit allows `B` to call back into `A` before `A` finishes execution.
+以太坊智能合约的特点之一是合约之间可以进行相互间的外部调用。同时，以太坊的转账不仅仅局限于外部账户，合约账户同样可以拥有以太并进行转账等操作，且合约在接收以太的时候会触发 fallback 函数执行相应的逻辑，这是一种隐藏的外部调用。
+
+我们先给重入漏洞下个定义：可以认为合约中所有的外部调用都是不安全的，都有可能存在重入漏洞。例如：如果外部调用的目标是一个攻击者可以控制的恶意的合约，那么当被攻击的合约在调用恶意合约的时候攻击者可以执行恶意的逻辑然后再重新进入到被攻击合约的内部，通过这样的方式来发起一笔非预期的外部调用，从而影响被攻击合约正常的执行逻辑。
+
+### 漏洞示例
+
+下面面的代码：`EtherStore` 就是个普通的充提币的合约，凭什么说他有重入攻击呢？我们来看这个合约的 `withdraw` 函数，这个函数中的转账操作有一个外部调用（msg.sender.call{value: bal}），所以我们就可以认为这个合约是可能有重入漏洞的，但是具体能否产生危害还需要更深入的分析：
+
+1. 所有的外部调用都是不安全的且合约在接收以太的时候会触发 `fallback` 函数执行相应的逻辑，这是一种隐藏的外部调用，这种隐藏的外部调用是否会造成危害呢？
+2. 我们可以看到在 `withdraw` 函数中是先执行外部调用进行转账后才将账户余额清零的，那我们可不可以在转账外部调用的时候构造一个恶意的逻辑合约在合约执行 `balance[msg.sender]=0` 之前一直循环调用 `withdraw` 函数一直提币从而将合约账户清空呢？
+
+下面我们看看攻击者编写的攻击合约中的攻击手法是否与我们的漏洞分析相同：
 
 ```solidity
 {{{ReEntrancy}}}
 ```
 
-### Preventative Techniques
+### 修复建议
 
-- Ensure all state changes happen before calling external contracts
-- Use function modifiers that prevent re-entrancy
+1. 作为开发人员
 
-Here is a example of a re-entracy guard
+看了上面的攻击手法相信大家对重入漏洞都会有一个自己的认知，但是只会攻击可不行，我们的目的是为了防御，那么作为开发人员如何避免写出漏洞代码还有作为审计人员如何快速发现问题代码呢，下面我们就以这两个身份来分析如何防御重入漏洞和如何在代码中快速找出重入漏洞：
+
+- 写代码时需要遵循先判断，后写入变量在进行外部调用的编码规范（Checks-Effects-Interactions）；
+
+- 加入防重入锁。
+
+下面是一个防重入锁的代码示例：
 
 ```solidity
 {{{ReEntrancyGuard}}}
 ```
+
+2. 作为审计人员
+
+作为审计人员我们需要关注的是重入漏洞的特征：所有涉及到外部合约调用的代码位置都是不安全的。这样在审计过程中需要重点关注外部调用，然后推演外部调用可能产生的危害，这样就能判断这个地方是否会因为重入点而产生危害。

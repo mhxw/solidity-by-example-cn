@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Visibility"
+export const title = "Visibility  可见性"
 export const description =
   "An example of external, internal, private and public functions in Solidity"
 

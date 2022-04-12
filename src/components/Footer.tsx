@@ -15,7 +15,7 @@ function Footer() {
         </a>
         <div className={styles.bar}>|</div>
         <a
-          href="https://github.com/mhxw/solidity-by-example-cn/blob/gh-pages/LICENSE"
+          href="https://github.com/mhxw/solidity-by-example-cn/blob/dev/LICENSE"
           target="__blank"
         >
           License

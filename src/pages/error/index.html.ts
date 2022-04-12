@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Error 错误"
+export const title = "Error 报错控制"
 export const description = "Example of how to throw errors in Solidity"
 
 const html = `<p>An error will undo all changes made to the state during a transaction.</p>

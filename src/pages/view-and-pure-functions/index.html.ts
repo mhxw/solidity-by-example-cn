@@ -12,8 +12,8 @@ const html = `<p>Getter 函数可以声明为 <code>view</code> 或者 <code>pur
 <li>触发事件（events）</li>
 <li>创建其他的合约</li>
 <li>使用 selfdestruct。</li>
-<li>call调用附加了以太币</li>
-<li>调用了任何没有view或pure修饰的函数</li>
+<li>call 调用附加了以太币</li>
+<li>调用了任何没有 view 或 pure 修饰的函数</li>
 <li>使用了低级别的调用（low-level calls）</li>
 <li>使用了包含特定操作符的内联汇编</li>
 </ul>
@@ -23,8 +23,8 @@ const html = `<p>Getter 函数可以声明为 <code>view</code> 或者 <code>pur
 <ul>
 <li>读状态变量</li>
 <li>访问了 this.balance 或 <address>.balance</li>
-<li>访问了block, tx, msg 的成员 (msg.sig 和 msg.data除外).</li>
-<li>调用了任何没有pure修饰的函数</li>
+<li>访问了 block, tx, msg 的成员 (msg.sig 和 msg.data 除外).</li>
+<li>调用了任何没有 pure 修饰的函数</li>
 <li>使用了包含特定操作符的内联汇编</li>
 </ul>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>

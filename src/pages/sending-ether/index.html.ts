@@ -1,28 +1,28 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Sending Ether (transfer, send, call)"
+export const title = "发送以太 (transfer, send, call)"
 export const description = "An example of sending Ether in Solidity"
 
-const html = `<h3 id="how-to-send-ether">How to send Ether?</h3>
-<p>You can send Ether to other contracts by</p>
+const html = `<h3 id="如何发送以太？">如何发送以太？</h3>
+<p>你可以向其他合约发送以太通过：</p>
 <ul>
-<li><code>transfer</code> (2300 gas, throws error)</li>
-<li><code>send</code> (2300 gas, returns bool)</li>
-<li><code>call</code> (forward all gas or set gas, returns bool)</li>
+<li><code>transfer</code> (2300 gas, 抛出错误)</li>
+<li><code>send</code> (2300 gas, 返回布尔值)</li>
+<li><code>call</code> (转发所有gas或设置gas，返回布尔值)</li>
 </ul>
-<h3 id="how-to-receive-ether">How to receive Ether?</h3>
-<p>A contract receiving Ether must have at least one of the functions below</p>
+<h3 id="如何接收以太？">如何接收以太？</h3>
+<p>接收 Ether 的合约必须至少具有以下函数之一</p>
 <ul>
 <li><code>receive() external payable</code></li>
 <li><code>fallback() external payable</code></li>
 </ul>
-<p><code>receive()</code> is called if <code>msg.data</code> is empty, otherwise <code>fallback()</code> is called.</p>
-<h3 id="which-method-should-you-use">Which method should you use?</h3>
-<p><code>call</code> in combination with re-entrancy guard is the recommended method to use after December 2019.</p>
-<p>Guard against re-entrancy by</p>
+<p>如果 <code>msg.data</code> 为空调用 <code>receive()</code> 否则调用 <code>fallback()</code>。</p>
+<h3 id="您应该使用哪种方法？">您应该使用哪种方法？</h3>
+<p><code>call</code> 是2019 年 12 月后推荐使用与重入防护结合使用的方法。</p>
+<p>通过以下方式防止重入</p>
 <ul>
-<li>making all state changes before calling other contracts</li>
-<li>using re-entrancy guard modifier</li>
+<li>在调用其他合约之前进行所有状态更改，遵循先判断，后写入变量在进行外部调用的编码规范（Checks-Effects-Interactions）；</li>
+<li>使用防重入锁</li>
 </ul>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
@@ -57,20 +57,20 @@ receive() exists?  fallback()
 
 <span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">SendEther</span> </span>{
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendViaTransfer</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> <span class="hljs-keyword">payable</span> _to</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
-        <span class="hljs-comment">// This function is no longer recommended for sending Ether.</span>
+        <span class="hljs-comment">// 不再推荐使用此功能发送以太币。</span>
         _to.<span class="hljs-built_in">transfer</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">value</span>);
     }
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendViaSend</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> <span class="hljs-keyword">payable</span> _to</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
-        <span class="hljs-comment">// Send returns a boolean value indicating success or failure.</span>
-        <span class="hljs-comment">// This function is not recommended for sending Ether.</span>
+        <span class="hljs-comment">// Send 会返回一个布尔值，表示成功或失败</span>
+        <span class="hljs-comment">// 不建议使用此功能发送 Ether。</span>
         <span class="hljs-keyword">bool</span> sent <span class="hljs-operator">=</span> _to.<span class="hljs-built_in">send</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">value</span>);
         <span class="hljs-built_in">require</span>(sent, <span class="hljs-string">"Failed to send Ether"</span>);
     }
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendViaCall</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> <span class="hljs-keyword">payable</span> _to</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
-        <span class="hljs-comment">// Call returns a boolean value indicating success or failure.</span>
-        <span class="hljs-comment">// This is the current recommended method to use.</span>
+        <span class="hljs-comment">// Call 会返回一个布尔值</span>
+        <span class="hljs-comment">// 这是当前推荐使用的方法。</span>
         (<span class="hljs-keyword">bool</span> sent, <span class="hljs-keyword">bytes</span> <span class="hljs-keyword">memory</span> data) <span class="hljs-operator">=</span> _to.<span class="hljs-built_in">call</span>{<span class="hljs-built_in">value</span>: <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">value</span>}(<span class="hljs-string">""</span>);
         <span class="hljs-built_in">require</span>(sent, <span class="hljs-string">"Failed to send Ether"</span>);
     }

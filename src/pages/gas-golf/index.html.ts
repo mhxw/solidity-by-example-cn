@@ -3,7 +3,7 @@ export const version = "0.8.10"
 export const title = "Gas 节省技巧"
 export const description = "Some gas saving techniques"
 
-const html = `<p>一些gas节省技巧。</p>
+const html = `<p>一些 gas 节省技巧。</p>
 <ul>
 <li>Replacing <code>memory</code> with <code>calldata</code></li>
 <li>Loading state variable to memory</li>

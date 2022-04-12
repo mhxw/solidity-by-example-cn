@@ -31,20 +31,20 @@ receive() exists?  fallback()
 
 contract SendEther {
     function sendViaTransfer(address payable _to) public payable {
-        // This function is no longer recommended for sending Ether.
+        // 不再推荐使用此功能发送以太币。
         _to.transfer(msg.value);
     }
 
     function sendViaSend(address payable _to) public payable {
-        // Send returns a boolean value indicating success or failure.
-        // This function is not recommended for sending Ether.
+        // Send 会返回一个布尔值，表示成功或失败
+        // 不建议使用此功能发送 Ether。
         bool sent = _to.send(msg.value);
         require(sent, "Failed to send Ether");
     }
 
     function sendViaCall(address payable _to) public payable {
-        // Call returns a boolean value indicating success or failure.
-        // This is the current recommended method to use.
+        // Call 会返回一个布尔值
+        // 这是当前推荐使用的方法。
         (bool sent, bytes memory data) = _to.call{value: msg.value}("");
         require(sent, "Failed to send Ether");
     }

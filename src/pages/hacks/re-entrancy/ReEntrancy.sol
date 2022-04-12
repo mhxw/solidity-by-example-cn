@@ -2,22 +2,25 @@
 pragma solidity ^0.8.10;
 
 /*
-EtherStore is a contract where you can deposit and withdraw ETH.
-This contract is vulnerable to re-entrancy attack.
-Let's see why.
+我们看到 EtherStore 合约是一个充提合约，我们可以在其中充提以太。
+该合约会受到重入攻击
+让我们看看为什么。
 
-1. Deploy EtherStore
-2. Deposit 1 Ether each from Account 1 (Alice) and Account 2 (Bob) into EtherStore
-3. Deploy Attack with address of EtherStore
-4. Call Attack.attack sending 1 ether (using Account 3 (Eve)).
-   You will get 3 Ethers back (2 Ether stolen from Alice and Bob,
-   plus 1 Ether sent from this contract).
+1. 部署 EtherStore 合约；
+2. 用户 1（Alice）和用户 2（Bob）都分别将 1 个以太币充值到 EtherStore 合约中；
+3. 攻击者 Eve 部署 Attack 合约时传入 EtherStore 合约的地址；
+4. 攻击者 Eve 调用 Attack.attack 函数，Attack.attack 又调用 EtherStore.deposit 函数，
+    充值 1 个以太币到 EtherStore 合约中，此时 EtherStore 合约中共有 3 个以太，
+    分别为 Alice、Bob 的 2 个以太和攻击者 Eve 刚刚充值进去的 1 个以太。
+    然后 Attack.attack 又调用 EtherStore.withdraw 函数将自己刚刚充值的以太取出，
+    此时 EtherStore 合约中就只剩下 Alice、Bob 的 2 个以太了；
 
-What happened?
-Attack was able to call EtherStore.withdraw multiple times before
-EtherStore.withdraw finished executing.
+接下来会发送什么？
+当 Attack.attack 调用 EtherStore.withdraw 提取了先前 Eve 充值的 1 个以太时会触发 Attack.fallback 函数。
+这时只要 EtherStore 合约中的以太大于或等于 1 Attack.fallback 就会一直调用 EtherStore.withdraw 函数将 EtherStore 合约中的以太提取到 Attack 合约中，直到 EtherStore 合约中的以太小于 1 。
+这样攻击者 Eve 会得到 EtherStore 合约中剩下的 2 个以太币（Alice、Bob 充值的两枚以太币）。
 
-Here is how the functions were called
+下面是攻击者的函数调用流程：
 - Attack.attack
 - EtherStore.deposit
 - EtherStore.withdraw

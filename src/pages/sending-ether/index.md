@@ -8,9 +8,9 @@ description: An example of sending Ether in Solidity
 
 你可以向其他合约发送以太通过：
 
-- `transfer` (2300 gas, throws error)
-- `send` (2300 gas, returns bool)
-- `call` (forward all gas or set gas, returns bool)
+- `transfer` (2300 gas, 抛出错误)
+- `send` (2300 gas, 返回布尔值)
+- `call` (转发所有 gas 或设置 gas，返回布尔值)
 
 ### 如何接收以太？
 
@@ -21,14 +21,14 @@ description: An example of sending Ether in Solidity
 
 如果 `msg.data` 为空调用 `receive()` 否则调用 `fallback()`。
 
-### Which method should you use?
+### 您应该使用哪种方法？
 
-`call` in combination with re-entrancy guard is the recommended method to use after December 2019.
+`call` 是 2019 年 12 月后推荐使用与重入防护结合使用的方法。
 
-Guard against re-entrancy by
+通过以下方式防止重入
 
-- making all state changes before calling other contracts
-- using re-entrancy guard modifier
+- 在调用其他合约之前进行所有状态更改，遵循先判断，后写入变量在进行外部调用的编码规范（Checks-Effects-Interactions）；
+- 使用防重入锁
 
 ```solidity
 {{{SendingEther}}}

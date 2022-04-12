@@ -1,6 +1,6 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Crowd Fund"
+export const title = "Crowd Fund 众筹合约"
 export const description = "An example of crowd funding contract"
 
 const html = `<p>Crowd fund ERC20 token</p>
