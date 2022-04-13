@@ -8,9 +8,9 @@ contract ArrayReplaceFromEnd {
     // One trick to keep the array compact is to
     // move the last element into the place to delete.
     function remove(uint index) public {
-        // Move the last element into the place to delete
+        // 将最后一个元素移动到要删除的地方
         arr[index] = arr[arr.length - 1];
-        // Remove the last element
+        // 移除最后一个元素
         arr.pop();
     }
 

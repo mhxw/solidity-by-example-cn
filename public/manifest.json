@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Solidity by Example 中文版",
+  "name": "通过案例学习Solidity",
   "icons": [
     {
       "src": "favicon.ico",
