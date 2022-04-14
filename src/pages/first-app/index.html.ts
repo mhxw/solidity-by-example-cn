@@ -1,9 +1,9 @@
 // metadata
 export const version = "0.8.10"
-export const title = "First Application"
+export const title = "First Application 第一个应用"
 export const description = "Example of smart contract in Solidity"
 
-const html = `<p>Here is a simple contract that you can get, increment and decrement the count store in this contract.</p>
+const html = `<p>这是一个简单的合约，您可以在该合约中对某个<code>count</code>获取、以及递增和递减操作。</p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
 
