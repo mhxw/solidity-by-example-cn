@@ -261,6 +261,10 @@ const APP_ROUTES: Route[] = [
     path: "multi-delegatecall",
     title: "Multi Delegatecall 多重委托调用",
   },
+  {
+    path: "time-lock",
+    title: "Time Lock 时间锁",
+  },
 ]
 
 const HACK_ROUTES: Route[] = [

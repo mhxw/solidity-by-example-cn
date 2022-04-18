@@ -8,7 +8,7 @@ const html = `<h3 id="如何发送以太？">如何发送以太？</h3>
 <ul>
 <li><code>transfer</code> (2300 gas, 抛出错误)</li>
 <li><code>send</code> (2300 gas, 返回布尔值)</li>
-<li><code>call</code> (转发所有gas或设置gas，返回布尔值)</li>
+<li><code>call</code> (转发所有 gas 或设置 gas，返回布尔值)</li>
 </ul>
 <h3 id="如何接收以太？">如何接收以太？</h3>
 <p>接收 Ether 的合约必须至少具有以下函数之一</p>
@@ -18,7 +18,7 @@ const html = `<h3 id="如何发送以太？">如何发送以太？</h3>
 </ul>
 <p>如果 <code>msg.data</code> 为空调用 <code>receive()</code> 否则调用 <code>fallback()</code>。</p>
 <h3 id="您应该使用哪种方法？">您应该使用哪种方法？</h3>
-<p><code>call</code> 是2019 年 12 月后推荐使用与重入防护结合使用的方法。</p>
+<p><code>call</code> 是 2019 年 12 月后推荐使用与重入防护结合使用的方法。</p>
 <p>通过以下方式防止重入</p>
 <ul>
 <li>在调用其他合约之前进行所有状态更改，遵循先判断，后写入变量在进行外部调用的编码规范（Checks-Effects-Interactions）；</li>

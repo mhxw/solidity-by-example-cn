@@ -104,7 +104,7 @@ const html = `<p>数组可以声明时指定长度，也可以时动态变长。
 <ul>
 <li>通过将最后一个元素复制到要删除的位置来删除数组元素</li>
 </ul>
-<p>这种方案比上面的方案节约gas，但是顺序被打乱了。</p>
+<p>这种方案比上面的方案节约 gas，但是顺序被打乱了。</p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
 
