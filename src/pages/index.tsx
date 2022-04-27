@@ -215,7 +215,7 @@ const APP_ROUTES: Route[] = [
   },
   {
     path: "create2",
-    title: "使用Create2计算合约地址",
+    title: "使用Create2计算新合约地址",
   },
   {
     path: "minimal-proxy",

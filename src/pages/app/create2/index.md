@@ -1,10 +1,24 @@
 ---
-title: Precompute Contract Address with Create2
+title: 使用 Create2 预计算合约地址
 version: 0.8.10
 description: Precompute contract address with create2
 ---
 
-Contract address can be precomputed, before the contract is deployed, using `create2`
+`create2` 是以太坊在2019年2月28号的君士坦丁堡（Constantinople）硬分叉中引入 的一个新操作码。
+
+使用 `create2` 方法可以在部署合约之前就可以直接计算出新部署的合约地址。
+
+工厂合约和create2部署新合约的不同点：
+
+- `new`方法是：在工厂合约里部署新合约，部署合约的地址是工厂合约的地址和工厂合约对外发出交易的nonce值计算出来的新合约地址。
+- `create2`方法是：工厂合约地址加盐salt再加上被部署合约的bytecode机器码去计算未来新部署合约的地址。因此新部署合约的地址在部署之前就可以预测出来。
+
+> 注意点：
+> 
+> salt不变的情况下，新部署的合约的地址就不会变化。因此，相同的salt在这个合约也只能使用一次，否则就会发生重复部署合约的错误。
+> 除非新合约是具有自毁功能的。 新合约如果自毁掉之后，你还可以使用相同的salt再把新合约部署到原来的地址上。
+
+因此，一个合约部署之后再自毁然后重生，这种情况是正常的。
 
 ```solidity
 {{{Create2}}}
