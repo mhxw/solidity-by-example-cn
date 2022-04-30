@@ -27,6 +27,7 @@ import component_data_locations from "./pages/data-locations"
 import component_defi_chainlink_price_oracle from "./pages/defi/chainlink-price-oracle"
 import component_defi_constant_product_amm from "./pages/defi/constant-product-amm"
 import component_defi_constant_sum_amm from "./pages/defi/constant-sum-amm"
+import component_defi_stable_swap_amm from "./pages/defi/stable-swap-amm"
 import component_defi_staking_rewards from "./pages/defi/staking-rewards"
 import component_defi_uniswap_v2 from "./pages/defi/uniswap-v2"
 import component_defi_uniswap_v2_add_remove_liquidity from "./pages/defi/uniswap-v2-add-remove-liquidity"
@@ -70,6 +71,7 @@ import component_mapping from "./pages/mapping"
 import component_new_contract from "./pages/new-contract"
 import component_payable from "./pages/payable"
 import component_primitives from "./pages/primitives"
+import component_sec_solidity_security from "./pages/sec/solidity-security"
 import component_sending_ether from "./pages/sending-ether"
 import component_shadowing_inherited_state_variables from "./pages/shadowing-inherited-state-variables"
 import component_signature from "./pages/signature"
@@ -215,6 +217,10 @@ const routes: Route[] = [
   {
     path: "/defi/constant-sum-amm",
     component: component_defi_constant_sum_amm,
+  },
+  {
+    path: "/defi/stable-swap-amm",
+    component: component_defi_stable_swap_amm,
   },
   {
     path: "/defi/staking-rewards",
@@ -387,6 +393,10 @@ const routes: Route[] = [
   {
     path: "/primitives",
     component: component_primitives,
+  },
+  {
+    path: "/sec/solidity-security",
+    component: component_sec_solidity_security,
   },
   {
     path: "/sending-ether",

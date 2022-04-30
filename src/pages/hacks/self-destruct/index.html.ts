@@ -1,13 +1,13 @@
 // metadata
 export const version = "0.8.10"
-export const title = "Self Destruct"
+export const title = "Self Destruct 自毁函数"
 export const description =
   "An example of how to delete your smart contract by calling seldestruct in Solidity"
 
-const html = `<p>Contracts can be deleted from the blockchain by calling <code>selfdestruct</code>.</p>
-<p><code>selfdestruct</code> sends all remaining Ether stored in the contract to a
-designated address.</p>
-<h3 id="vulnerability">Vulnerability</h3>
+const html = `<p>可以调用 <code>selfdestruct</code> 从区块链网络删除合约。</p>
+<p><code>selfdestruct</code> 将存储在合约中的所有剩余以太币发送到指定地址</p>
+<p>自毁合约只是给你gas补贴，不能给你扩大gas限制。</p>
+<h3 id="vulnerability-漏洞">Vulnerability 漏洞</h3>
 <p>A malicious contract can use <code>selfdestruct</code> to
 force sending Ether to any contract.</p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
@@ -69,8 +69,8 @@ Now no one can deposit and the winner cannot be set.
     }
 }
 </code></pre>
-<h3 id="preventative-techniques">Preventative Techniques</h3>
-<p>Don&#39;t rely on <code>address(this).balance</code></p>
+<h3 id="防御措施">防御措施</h3>
+<p>不要依赖 <code>address(this).balance</code></p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
 

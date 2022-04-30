@@ -1,15 +1,16 @@
 ---
-title: Self Destruct
+title: Self Destruct 自毁函数
 version: 0.8.10
 description: An example of how to delete your smart contract by calling seldestruct in Solidity
 ---
 
-Contracts can be deleted from the blockchain by calling `selfdestruct`.
+可以调用 `selfdestruct` 从区块链网络删除合约。
 
-`selfdestruct` sends all remaining Ether stored in the contract to a
-designated address.
+`selfdestruct` 将存储在合约中的所有剩余以太币发送到指定地址
 
-### Vulnerability
+自毁合约只是给你 gas 补贴，不能给你扩大 gas 限制。
+
+### Vulnerability 漏洞
 
 A malicious contract can use `selfdestruct` to
 force sending Ether to any contract.
@@ -18,9 +19,9 @@ force sending Ether to any contract.
 {{{ForceEther}}}
 ```
 
-### Preventative Techniques
+### 防御措施
 
-Don't rely on `address(this).balance`
+不要依赖 `address(this).balance`
 
 ```solidity
 {{{PreventForceEther}}}

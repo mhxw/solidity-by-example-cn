@@ -24,6 +24,9 @@ const html = `<h3 id="如何发送以太？">如何发送以太？</h3>
 <li>在调用其他合约之前进行所有状态更改，遵循先判断，后写入变量在进行外部调用的编码规范（Checks-Effects-Interactions）；</li>
 <li>使用防重入锁</li>
 </ul>
+<p>注意点：在使用call.value 时候，如果调用者是合约对象，会执行fallback。</p>
+<p>具体案例可参考此文章。</p>
+<p><a href="https://mp.weixin.qq.com/s/nveh1aVTxIBUDTzzQqSuIQ">https://mp.weixin.qq.com/s/nveh1aVTxIBUDTzzQqSuIQ</a></p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
 

@@ -326,6 +326,13 @@ const HACK_ROUTES: Route[] = [
   },
 ]
 
+const SEC_ROUTES: Route[] = [
+  {
+    path: "solidity-security",
+    title: "合约安全",
+  },
+]
+
 const TEST_ROUTES: Route[] = [
   {
     path: "echidna",
@@ -384,6 +391,13 @@ export const ROUTES_BY_CATEGORY = [
     routes: HACK_ROUTES.map((route) => ({
       ...route,
       path: `/solidity-by-example-cn/hacks/${route.path}`,
+    })),
+  },
+  {
+    title: "Security",
+    routes: SEC_ROUTES.map((route) => ({
+      ...route,
+      path: `/solidity-by-example-cn/sec/${route.path}`,
     })),
   },
   {

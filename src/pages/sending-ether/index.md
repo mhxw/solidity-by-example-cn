@@ -30,6 +30,12 @@ description: An example of sending Ether in Solidity
 - 在调用其他合约之前进行所有状态更改，遵循先判断，后写入变量在进行外部调用的编码规范（Checks-Effects-Interactions）；
 - 使用防重入锁
 
+注意点：在使用 call.value 时候，如果调用者是合约对象，会执行 fallback。
+
+具体案例可参考此文章。
+
+[https://mp.weixin.qq.com/s/nveh1aVTxIBUDTzzQqSuIQ](https://mp.weixin.qq.com/s/nveh1aVTxIBUDTzzQqSuIQ)
+
 ```solidity
 {{{SendingEther}}}
 ```
