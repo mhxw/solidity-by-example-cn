@@ -6,7 +6,7 @@ export const description =
 
 const html = `<p>可以调用 <code>selfdestruct</code> 从区块链网络删除合约。</p>
 <p><code>selfdestruct</code> 将存储在合约中的所有剩余以太币发送到指定地址</p>
-<p>自毁合约只是给你gas补贴，不能给你扩大gas限制。</p>
+<p>自毁合约只是给你 gas 补贴，不能给你扩大 gas 限制。</p>
 <h3 id="vulnerability-漏洞">Vulnerability 漏洞</h3>
 <p>A malicious contract can use <code>selfdestruct</code> to
 force sending Ether to any contract.</p>
