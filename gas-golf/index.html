@@ -1,0 +1,49 @@
+<!DOCTYPE html><html class="fa-events-icons-ready" lang="en"><head><meta charset="utf-8"><link href="/solidity-by-example-cn/favicon.ico" rel="shortcut icon"><meta content="width=device-width,initial-scale=1,shrink-to-fit=yes" name="viewport"><meta content="#000000" name="theme-color"><script src="/solidity-by-example-cn/ba3dde78ee.js"></script><link href="https://use.fontawesome.com/ba3dde78ee.css" rel="stylesheet" media="all"><link href="/solidity-by-example-cn/manifest.json" rel="manifest"><title>Gas 优化技巧 | Solidity by Example 中文版 | 0.8.10</title><script src="/solidity-by-example-cn/static/js/main.cc03c517.js" defer></script><link href="/solidity-by-example-cn/static/css/main.7efd0579.css" rel="stylesheet"><link href="https://use.fontawesome.com" rel="preconnect"><meta content="Some gas saving techniques" name="Description" data-react-helmet="true"></head><body class="light"><noscript>You need to enable JavaScript to run this app.</noscript><script>const theme=localStorage.getItem("theme")||"light";document.body.classList.add(theme)</script><div id="root"><div class="App_component__uBhCy"><div class="Header_component__dJEiY"><a href="/"><img alt="logo" class="Header_logo__nZ7K6" src="/solidity-by-example-cn/static/media/logo.ed2942c41ca20fd4f70a.png"></a><h3 class="Header_header__Lhnr8"><a href="/solidity-by-example-cn/">Solidity by Example 中文版</a><div class="Header_versions__j+f36"><div class="Header_version__4Ju4J">version 0.8.10</div></div></h3><img alt="dark mode" class="Header_dark__TFGN2" src="/solidity-by-example-cn/static/media/mode-dark.5726a29b11b0940df6a4.png"></div><div class="App_main__nhgh3"><div class="Example_component__4Fiv8"><div class="Example_content__6NsNh"><h2>Gas 优化技巧</h2><div><p>一些节约gas技巧。</p><ul><li>将输入变量的 <code>memory</code> 存储位置改为 <code>calldata</code></li><li>由加载状态变量改为内存变量</li><li>循环小技巧：将 <code>i++</code> 改为 <code>++i</code></li><li>Caching array elements 缓存数组元素</li><li>Short circuit 短路</li></ul><pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
+<span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
+
+<span class="hljs-comment">// gas 节约</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">GasGolf</span> </span>{
+    <span class="hljs-comment">// 初始 - 50908 gas</span>
+    <span class="hljs-comment">// 使用 calldata - 49163 gas</span>
+    <span class="hljs-comment">// 将状态变量赋值到内存中的变量 - 48952 gas</span>
+    <span class="hljs-comment">// short circuit 短路 - 48634 gas</span>
+    <span class="hljs-comment">// loop increments 循环增量 - 48244 gas</span>
+    <span class="hljs-comment">// cache array length 缓存数组长度 - 48209 gas</span>
+    <span class="hljs-comment">// 将数组元素赋值到内存中 - 48047 gas</span>
+
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> total;
+
+    <span class="hljs-comment">// 刚开始时候的函数 - 没有进行gas优化</span>
+    <span class="hljs-comment">// function sumIfEvenAndLessThan99(uint[] memory nums) external {</span>
+    <span class="hljs-comment">//     for (uint i = 0; i &lt; nums.length; i += 1) {</span>
+    <span class="hljs-comment">//          // 这里2个布尔值赋值可以删掉，删掉之后。如果if中前面条件不满足，后面一个条件就不需要判断，这样便可以节省部分gas。</span>
+    <span class="hljs-comment">//         bool isEven = nums[i] % 2 == 0;</span>
+    <span class="hljs-comment">//         bool isLessThan99 = nums[i] &lt; 99;</span>
+    <span class="hljs-comment">//         if (isEven && isLessThan99) {</span>
+    <span class="hljs-comment">//             // 每次循环修改状态变量是比较消耗gas，我们可以把这个状态变量拿到循环体外，见下面优化后的函数</span>
+    <span class="hljs-comment">//             total += nums[i];</span>
+    <span class="hljs-comment">//         }</span>
+    <span class="hljs-comment">//     }</span>
+    <span class="hljs-comment">// }</span>
+
+    <span class="hljs-comment">// gas优化后的函数</span>
+    <span class="hljs-comment">// [1, 2, 3, 4, 5, 100]</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sumIfEvenAndLessThan99</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span>[] <span class="hljs-keyword">calldata</span> nums</span>) <span class="hljs-title"><span class="hljs-keyword">external</span></span> </span>{
+        <span class="hljs-comment">// 首先把状态变量拷贝到内存中</span>
+        <span class="hljs-keyword">uint</span> _total <span class="hljs-operator">=</span> total;
+        <span class="hljs-comment">// 缓存数组长度</span>
+        <span class="hljs-keyword">uint</span> len <span class="hljs-operator">=</span> nums.<span class="hljs-built_in">length</span>;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">uint</span> i <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i <span class="hljs-operator">&lt;</span> len; <span class="hljs-operator">+</span><span class="hljs-operator">+</span>i) {
+            <span class="hljs-comment">//</span>
+            <span class="hljs-keyword">uint</span> num <span class="hljs-operator">=</span> nums[i];
+            <span class="hljs-keyword">if</span> (num <span class="hljs-operator">%</span> <span class="hljs-number">2</span> <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-number">0</span> <span class="hljs-operator">&</span><span class="hljs-operator">&</span> num <span class="hljs-operator">&lt;</span> <span class="hljs-number">99</span>) {
+                <span class="hljs-comment">// 此处每次累加修改的是内存中的变量</span>
+                _total <span class="hljs-operator">+</span><span class="hljs-operator">=</span> num;
+            }
+        }
+
+        total <span class="hljs-operator">=</span> _total;
+    }
+}
+</code></pre></div><div class="Example_prevNext__kHIFg"><a href="/solidity-by-example-cn/signature">&lt; Verifying Signature 验证签名</a><a href="/solidity-by-example-cn/app/ether-wallet">以太钱包合约 ></a></div><p>尝试使用 <a href="https://remix.ethereum.org" target="__blank">Remix</a></p></div></div></div><div class="App_footer__aawhi"><div class="Footer_component__jGbca"><div class="Footer_row__Rkj75"><a href="https://mhxw.life/ethereum-development-with-go-book/" target="__blank">用Go来做以太坊开发</a></div><div class="Footer_row__Rkj75"><a href="https://github.com/mhxw/solidity-by-example-cn" target="__blank">源码</a><div class="Footer_bar__yDFRF">|</div><a href="https://github.com/mhxw/solidity-by-example-cn/blob/dev/LICENSE" target="__blank">License</a></div></div></div></div></div></body></html>

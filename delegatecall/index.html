@@ -1,0 +1,32 @@
+<!DOCTYPE html><html class="fa-events-icons-ready" lang="en"><head><meta charset="utf-8"><link href="/solidity-by-example-cn/favicon.ico" rel="shortcut icon"><meta content="width=device-width,initial-scale=1,shrink-to-fit=yes" name="viewport"><meta content="#000000" name="theme-color"><script src="/solidity-by-example-cn/ba3dde78ee.js"></script><link href="https://use.fontawesome.com/ba3dde78ee.css" rel="stylesheet" media="all"><link href="/solidity-by-example-cn/manifest.json" rel="manifest"><title>Delegatecall 多重调用 | Solidity by Example 中文版 | 0.8.10</title><script src="/solidity-by-example-cn/static/js/main.cc03c517.js" defer></script><link href="/solidity-by-example-cn/static/css/main.7efd0579.css" rel="stylesheet"><link href="https://use.fontawesome.com" rel="preconnect"><meta content="Example of how to use deletegatecall in Solidity" name="Description" data-react-helmet="true"></head><body class="light"><noscript>You need to enable JavaScript to run this app.</noscript><script>const theme=localStorage.getItem("theme")||"light";document.body.classList.add(theme)</script><div id="root"><div class="App_component__uBhCy"><div class="Header_component__dJEiY"><a href="/"><img alt="logo" class="Header_logo__nZ7K6" src="/solidity-by-example-cn/static/media/logo.ed2942c41ca20fd4f70a.png"></a><h3 class="Header_header__Lhnr8"><a href="/solidity-by-example-cn/">Solidity by Example 中文版</a><div class="Header_versions__j+f36"><div class="Header_version__4Ju4J">version 0.8.10</div></div></h3><img alt="dark mode" class="Header_dark__TFGN2" src="/solidity-by-example-cn/static/media/mode-dark.5726a29b11b0940df6a4.png"></div><div class="App_main__nhgh3"><div class="Example_component__4Fiv8"><div class="Example_content__6NsNh"><h2>Delegatecall 多重调用</h2><div><p><code>delegatecall</code> 是一个类似于 <code>call</code> 的低级函数。</p><p>当合约 <code>A</code> 使用 <code>delegatecall</code> 调用合约 <code>B</code> 的方法, 合约 <code>B</code> 的代码，合约 <code>A</code>的存储, <code>msg.sender</code> 和 <code>msg.value</code> 被执行。</p><p>相当于合约 A 调用 B 的方法，合约 B 中的值没有发生改变，而合约 A 的值发生改变。</p><blockquote><p>注意</p><p>委托调用合约的变量位置和被调用合约的变量位置必须保持一致。 在新版 solidity 中，可以在被调用合约的当前所有变量之后添加新的变量，但不能在当前所有变量之前添加新变量。</p></blockquote><pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
+<span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.10;</span>
+
+<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> Deploy this contract first</span>
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">B</span> </span>{
+    <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> storage layout must be the same as contract A</span>
+    <span class="hljs-comment">// 注意：变量布局必须和合约A中的变量布局保持一致</span>
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> num;
+    <span class="hljs-keyword">address</span> <span class="hljs-keyword">public</span> sender;
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> value;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setVars</span>(<span class="hljs-params"><span class="hljs-keyword">uint</span> _num</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
+        num <span class="hljs-operator">=</span> _num;
+        sender <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">sender</span>;
+        value <span class="hljs-operator">=</span> <span class="hljs-built_in">msg</span>.<span class="hljs-built_in">value</span>;
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">A</span> </span>{
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> num;
+    <span class="hljs-keyword">address</span> <span class="hljs-keyword">public</span> sender;
+    <span class="hljs-keyword">uint</span> <span class="hljs-keyword">public</span> value;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setVars</span>(<span class="hljs-params"><span class="hljs-keyword">address</span> _contract, <span class="hljs-keyword">uint</span> _num</span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">payable</span></span> </span>{
+        <span class="hljs-comment">// A's storage is set, B is not modified.</span>
+        <span class="hljs-comment">// A的变量发送变化，B没有改变</span>
+        (<span class="hljs-keyword">bool</span> success, <span class="hljs-keyword">bytes</span> <span class="hljs-keyword">memory</span> data) <span class="hljs-operator">=</span> _contract.<span class="hljs-built_in">delegatecall</span>(
+            <span class="hljs-built_in">abi</span>.<span class="hljs-built_in">encodeWithSignature</span>(<span class="hljs-string">"setVars(uint256)"</span>, _num)
+        );
+    }
+}
+</code></pre></div><div class="Example_prevNext__kHIFg"><a href="/solidity-by-example-cn/call">&lt; Call 低级Call</a><a href="/solidity-by-example-cn/function-selector">Function Selector 函数选择器 ></a></div><p>尝试使用 <a href="https://remix.ethereum.org" target="__blank">Remix</a></p></div></div></div><div class="App_footer__aawhi"><div class="Footer_component__jGbca"><div class="Footer_row__Rkj75"><a href="https://mhxw.life/ethereum-development-with-go-book/" target="__blank">用Go来做以太坊开发</a></div><div class="Footer_row__Rkj75"><a href="https://github.com/mhxw/solidity-by-example-cn" target="__blank">源码</a><div class="Footer_bar__yDFRF">|</div><a href="https://github.com/mhxw/solidity-by-example-cn/blob/dev/LICENSE" target="__blank">License</a></div></div></div></div></div></body></html>

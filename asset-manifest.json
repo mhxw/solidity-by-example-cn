@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/solidity-by-example-cn/static/css/main.7efd0579.css",
+    "main.js": "/solidity-by-example-cn/static/js/main.cc03c517.js",
+    "static/media/mode-dark.png": "/solidity-by-example-cn/static/media/mode-dark.5726a29b11b0940df6a4.png",
+    "static/media/logo.png": "/solidity-by-example-cn/static/media/logo.ed2942c41ca20fd4f70a.png",
+    "static/media/logo-dark.png": "/solidity-by-example-cn/static/media/logo-dark.9591f04e30ed89ce053b.png",
+    "index.html": "/solidity-by-example-cn/index.html",
+    "main.7efd0579.css.map": "/solidity-by-example-cn/static/css/main.7efd0579.css.map",
+    "main.cc03c517.js.map": "/solidity-by-example-cn/static/js/main.cc03c517.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7efd0579.css",
+    "static/js/main.cc03c517.js"
+  ]
+}
